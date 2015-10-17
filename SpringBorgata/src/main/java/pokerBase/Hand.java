@@ -112,11 +112,31 @@ public class Hand {
 
 		return h;
 	}
-
+	
+	// take in one hand and make n hands
+	//loop through each card
+	// if it is a joker or wild
+	private static ExplodeHands(ArrayList<Hands> Hand)
+	{
+		for (int a1 ; a1 < Hand.length ; a1++)
+		{
+			//passing in array list of cards
+			if (Hand[a1] == eRank.JOKER)
+			{
+				Hand[a1] = dJoker;
+				//need a non joker deck (dJoker)
+				//putting a jokerless deck into that spot of the array
+				
+			}
+		}
+		return Hand;
+		//get back array list of cards
+	}
 
 	public void EvalHand() {
 		// Evaluates if the hand is a flush and/or straight then figures out
 		// the hand's strength attributes
+		
 
 		ArrayList<Card> remainingCards = new ArrayList<Card>();
 		
@@ -427,6 +447,23 @@ public class Hand {
 	//////////////////////
 	//Part 5
 	//////////////////////
+	public static Hand PickBestHand(ArrayList<Hand> Hands) throws exHand
+	{
+	try {
+			
+		int besthand = 0;
+		for (int a2 ; a2 < Hands.length ; a2++)
+		{
+			if (Hands[a2].HandStrength> besthand)
+			{
+				besthand = Hands[a2];
+			}
+		}
+	}
+		catch (exHand e){
+			System.out.println("two hands are tied");
+		}
+	}
 
 	
 
@@ -438,6 +475,7 @@ public class Hand {
 		this.bScored = true;
 
 	}
+	
 
 	/**
 	 * Custom sort to figure the best hand in an array of hands

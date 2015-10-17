@@ -36,6 +36,8 @@ public class Deck {
 
 	}
 	
+	//constructor for the joker and wilds in the deck
+	
 	public Deck(int NbrOfJokers) {
 
 		this();
