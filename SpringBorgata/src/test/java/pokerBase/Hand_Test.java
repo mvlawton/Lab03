@@ -32,6 +32,19 @@ public class Hand_Test {
 	}
 
 	@Test
+	public void FiveOfAKind() {
+		Hand h = new Hand();
+		h.AddCardToHand(new Card(eSuit.DIAMONDS,eRank.SEVEN,0));
+		h.AddCardToHand(new Card(eSuit.SPADES,eRank.SEVEN,0));
+		h.AddCardToHand(new Card(eSuit.JOKER,eRank.JOKER,0));
+		h.AddCardToHand(new Card(eSuit.HEARTS,eRank.SEVEN,0));
+		h.AddCardToHand(new Card(eSuit.CLUBS,eRank.SEVEN,0));
+		h.EvalHand();
+		
+		assertTrue(h.getHandStrength() == eHandStrength.FiveOfAKind.getHandStrength());
+	}
+	
+	@Test
 	public void RoyalFlush() {
 		Deck d = new Deck();
 		Hand h = new Hand();
@@ -233,7 +246,36 @@ public class Hand_Test {
 		assertTrue(h.getHighPairStrength() == eRank.TWO.getRank());
 		assertTrue(h.getLowPairStrength() == eRank.TEN.getRank());
 		assertTrue(h.getKicker() == null);	
-	}		
+	}
+	
+	@Test
+	public void FullHouse_3() {
+		Hand h = new Hand();
+		h.AddCardToHand(new Card(eSuit.CLUBS,eRank.THREE,0));
+		h.AddCardToHand(new Card(eSuit.DIAMONDS,eRank.THREE,0));
+		h.AddCardToHand(new Card(eSuit.SPADES,eRank.THREE,0));
+		h.AddCardToHand(new Card(eSuit.CLUBS,eRank.FIVE,0));
+		h.AddCardToHand(new Card(eSuit.HEARTS,eRank.FIVE,0));
+		h.EvalHand();
+		
+		assertTrue(h.getHandStrength() == eHandStrength.FullHouse.getHandStrength());
+		assertTrue(h.getHighPairStrength() == eRank.THREE.getRank());
+		assertTrue(h.getLowPairStrength() == eRank.FIVE.getRank());
+		assertTrue(h.getKicker() == null);	
+	}
+	
+	@Test
+	public void FullHouse_4() {
+		Hand h = new Hand();
+		h.AddCardToHand(new Card(eSuit.JOKER,eRank.JOKER,0));
+		h.AddCardToHand(new Card(eSuit.DIAMONDS,eRank.THREE,0));
+		h.AddCardToHand(new Card(eSuit.SPADES,eRank.THREE,0));
+		h.AddCardToHand(new Card(eSuit.CLUBS,eRank.FIVE,0));
+		h.AddCardToHand(new Card(eSuit.HEARTS,eRank.FIVE,0));
+		h.EvalHand();
+		
+		assertTrue(h.getHandStrength() == eHandStrength.FullHouse.getHandStrength());	
+	}
 	
 	@Test
 	public void TwoPair() {

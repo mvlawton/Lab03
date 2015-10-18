@@ -116,14 +116,14 @@ public class Hand {
 	// take in one hand and make n hands
 	//loop through each card
 	// if it is a joker or wild
-	private static ExplodeHands(ArrayList<Hands> Hand)
+	private static ArrayList<Hand> ExplodeHands(ArrayList<Hand> Hand)
 	{
-		for (int a1 ; a1 < Hand.length ; a1++)
+		for (int a1 = 0 ; a1 < Hand.size() ; a1++)
 		{
 			//passing in array list of cards
-			if (Hand[a1] == eRank.JOKER)
+			//if (Hand.get(a1) == eRank.JOKER)
 			{
-				Hand[a1] = dJoker;
+			//	Hand[a1] = dJoker;
 				//need a non joker deck (dJoker)
 				//putting a jokerless deck into that spot of the array
 				
@@ -447,22 +447,17 @@ public class Hand {
 	//////////////////////
 	//Part 5
 	//////////////////////
-	public static Hand PickBestHand(ArrayList<Hand> Hands) throws exHand
-	{
-	try {
-			
-		int besthand = 0;
-		for (int a2 ; a2 < Hands.length ; a2++)
-		{
-			if (Hands[a2].HandStrength> besthand)
-			{
-				besthand = Hands[a2];
+	public static Hand PickBestHand(ArrayList<Hand> Hands) throws exHand {
+		Hand besthand = new Hand();
+		for (int a2 = 0; a2 < Hands.size(); a2++) {
+			if (Hands.get(a2).getHandStrength() > besthand.getHandStrength()) {
+				besthand = Hands.get(a2);
+			}
+			else if (Hands.get(a2).getHandStrength() == besthand.getHandStrength()) {
+				throw new exHand();
 			}
 		}
-	}
-		catch (exHand e){
-			System.out.println("two hands are tied");
-		}
+		return besthand;
 	}
 
 	
